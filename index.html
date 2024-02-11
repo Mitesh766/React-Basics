@@ -1,0 +1,37 @@
+<!-- 
+    (shortest program of react) ==>adding cdn links
+react in not only limited to desktops ,there is react native ,react 3d and many more therefore we have two sources in script, and the second one here is for web version
+-->
+<!-- const heading = React.createElement("h1", {}, "Hey Everyone");: This line creates a React element <h1> with the text content "Hey Everyone". The React.createElement() function is used to create React elements.
+
+const root = ReactDOM.createRoot(document.getElementById("cont"));: This line creates a root for the React application using ReactDOM.createRoot(). It specifies that the React component will be rendered into the <div> element with the id "cont".
+    
+root.render(heading);: This line renders the React element heading into the root specified earlier. The render() function is used to render React elements into the DOM. -->
+
+ <!-- before react renders for a very few milli seconds we see what was earlier return in root , as it takes some time for react to install and render it  -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <div id="cont">
+      NOt rendered
+    </div>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script>
+        //React.createElement((type)tag,(props)tag attributes,(children)content of tag)
+      const heading=React.createElement("h1",{id:"Hi there"},"What's up")
+      const root=ReactDOM.createRoot(document.getElementById("cont"))
+      root.render(heading)
+      //react will replace whatever is written inside root(here whatever already present inside div) will be replaced(overwritten) by whatever passed from this render ,therefore not rendered is overwritten with HI there
+      
+    </script>
+  </body>
+</html>

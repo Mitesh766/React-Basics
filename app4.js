@@ -1,0 +1,5 @@
+const heading1=React.createElement("h1",{id:"h1tag",key:"Head1"},"This is heading 1")
+const heading2=React.createElement("h2",{id:"h2tag",key:"Head2"},"This is heading 2")
+const division=React.createElement("div",{id:"container"},[heading1,heading2])
+const root=ReactDOM.createRoot(document.getElementById("rootEle"))
+root.render(division)
