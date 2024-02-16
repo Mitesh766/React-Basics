@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "learning basics of react",
   "scripts": {
-    "start": "parcel index5.html",
+    "start": "parcel index6.html",
     "test": "jest"
   },
   "author": "Mitesh Agrawal",
