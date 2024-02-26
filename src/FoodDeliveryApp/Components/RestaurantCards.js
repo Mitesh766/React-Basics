@@ -4,7 +4,7 @@ const ResCard = (props) => {
     const { resData } = props;
     //destructuring name , costForTwo,.... from resData.info
     // putting question mark called optional chaining
-    const { name, costForTwo, cuisines, cloudinaryImageId } = resData?.info;
+    const { name, costForTwo, cuisines, cloudinaryImageId, avgRating } = resData?.info;
     return (
       <div className="res-card">
         <img
@@ -16,6 +16,7 @@ const ResCard = (props) => {
           }
         ></img>
         <h3>{name}</h3>
+        <h4>{avgRating}⭐</h4>
         <h4>{costForTwo}</h4>
         <h4>{cuisines.join(", ")}</h4>
       </div>
