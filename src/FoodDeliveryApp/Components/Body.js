@@ -1,33 +1,53 @@
-import resList from "../utils/mockData";
 import ResCard from "./RestaurantCards";
-import { useState} from "react";
+import { useEffect, useState } from "react";
 const Body = () => {
+  //this is array destructuring
 
-//this is array destructuring
+  // same as let arr= useState(resList)
 
-// same as let arr= useState(resList)
+  //[ListofRes,setListOfRes]=arr
 
-//[ListofRes,setListOfRes]=arr  
+  // same as const ListofRes=arr[0]
+  // same as const setListOfRes=arr[1]
+  let [ListofRes, setListOfRes] = useState([]);
 
-// same as const ListofRes=arr[0]
-// same as const setListOfRes=arr[1]
-let [ListofRes,setListOfRes]=useState(resList)
+  useEffect(() => {
+  fetchData()
+  }, []);
 
+const fetchData=async ()=>{
+    const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9715987&lng=77.5945627&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING")
 
-    return (
-      <div className="body-container">
-        <div className="filter">
-          <button className="filter-btn" onClick={()=>{filteredList=ListofRes.filter((res)=>{
-            return res.info.avgRating>4   })
-            setListOfRes(filteredList)
-            console.log(filteredList)}} >Top Rated Restaurants</button>
-        
-        </div>
-        <div className="res-card-container">
-         
-          {ListofRes.map(restaurant => <ResCard key={restaurant.info.id} resData={restaurant}/>)}
-        </div>
+    const json=await data.json()
+    console.log(json)
+
+   // ? =>optional chaining
+    
+   setListOfRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+}
+   
+  return (
+    <div className="body-container">
+      <div className="filter">
+        <button
+          className="filter-btn"
+          onClick={() => {
+            filteredList = ListofRes.filter((res) => {
+              return res.info.avgRating > 4.5;
+            });
+            setListOfRes(filteredList);
+            console.log(filteredList);
+          }}
+        >
+          Top Rated Restaurants
+        </button>
       </div>
-    );
-  };
-  export default Body
+      <div className="res-card-container">
+        {ListofRes.map((restaurant) => (
+          <ResCard key={restaurant.info.id} resData={restaurant} />
+        ))}
+      </div>
+    </div>
+  );
+};
+export default Body;
