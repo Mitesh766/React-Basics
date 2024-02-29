@@ -1,5 +1,6 @@
 import ResCard from "./RestaurantCards";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 const Body = () => {
   //this is array destructuring
 
@@ -26,7 +27,11 @@ const fetchData=async ()=>{
    setListOfRes(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
 }
    
-  return (
+//while the data from api listOfRes will be empty  loads display this , 
+//conditional rendering
+
+// if length==0 return shimmer else return body-container
+  return ListofRes.length==0 ? (<Shimmer/> ) :(
     <div className="body-container">
       <div className="filter">
         <button
